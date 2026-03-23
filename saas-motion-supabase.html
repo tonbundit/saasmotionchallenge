@@ -595,6 +595,55 @@
       color: var(--text);
     }
 
+    .btn-google {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 10px;
+      border-radius: 22px;
+      border: 1px solid var(--border2);
+      background: #ffffff;
+      color: #1f1f1f;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .2s;
+      margin-top: 12px;
+    }
+
+    .btn-google:hover {
+      background: #f1f1f1;
+      transform: translateY(-1px);
+    }
+
+    .auth-sep {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 16px 0;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 10px;
+    }
+
+    .auth-sep::before,
+    .auth-sep::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .auth-sep:not(:empty)::before {
+      margin-right: 12px;
+    }
+
+    .auth-sep:not(:empty)::after {
+      margin-left: 12px;
+    }
+
     /* Descriptions */
     .pn-brief {
       background: rgba(255, 255, 255, .02);
@@ -2565,6 +2614,13 @@
           <input type="password" id="authPass" class="auth-input" placeholder="Password">
           <button class="btn-a" id="authSubmit" onclick="handleAuth()"
             style="width:100%;justify-content:center;">Continue</button>
+          
+          <div class="auth-sep">OR</div>
+          
+          <button class="btn-google" onclick="signInWithGoogle()">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="16" height="16">
+            Sign in with Google
+          </button>
         </div>
       </div>
     </div>
@@ -2839,6 +2895,16 @@
     }
 
     async function signOutUser() { await sb.auth.signOut(); user = null; updateAuthUI(); localStorage.removeItem(SK); location.reload(); }
+
+    async function signInWithGoogle() {
+      const { data, error } = await sb.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: window.location.origin + window.location.pathname
+        }
+      });
+      if (error) alert('Error: ' + error.message);
+    }
 
     function ldn() { try { return JSON.parse(localStorage.getItem(SK + 'n')) || []; } catch (e) { return []; } }
     function svn() { localStorage.setItem(SK + 'n', JSON.stringify(notifs.slice(0, 50))); }
@@ -3127,7 +3193,13 @@
       localStorage.setItem('saasNotifAsked', 'true');
       Notification.requestPermission();
     }
-    chkExp(); renderAll(); checkUser(); setInterval(chkExp, 30000);
+    chkExp(); renderAll(); checkUser();
+    sb.auth.onAuthStateChange((event, session) => {
+      user = session?.user || null;
+      updateAuthUI();
+      if (user) loadRemote();
+    });
+    setInterval(chkExp, 30000);
 
   </script>
 </body>
