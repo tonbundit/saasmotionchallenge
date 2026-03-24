@@ -214,7 +214,7 @@ export default function Home() {
                 >
                   <div
                     className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity"
-                    style={{ background: linear-gradient(90deg, \, transparent) }}
+                    style={{ background: `linear-gradient(90deg, ${tech.color}, transparent)` }}
                   />
                   <div
                     className="text-[9px] tracking-[0.18em] uppercase mb-2"
@@ -278,7 +278,7 @@ export default function Home() {
                   >
                     <div
                       className="absolute top-0 left-0 right-0 h-[2px]"
-                      style={{ background: linear-gradient(90deg, \, transparent) }}
+                      style={{ background: `linear-gradient(90deg, ${feat.accent}, transparent)` }}
                     />
                     <div
                       className="text-[9px] tracking-[0.18em] uppercase mb-1"

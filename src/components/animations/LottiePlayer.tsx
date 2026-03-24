@@ -14,7 +14,7 @@ export function LottiePlayer({ animationData, className = "", loop = true, autop
   if (!animationData) return null;
 
   return (
-    <div className={w-full h-full flex items-center justify-center \}>
+    <div className={`w-full h-full flex items-center justify-center ${className}`}>
       <Lottie 
         animationData={animationData} 
         loop={loop} 

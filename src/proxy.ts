@@ -5,7 +5,7 @@ const ALLOWED_ORIGINS = process.env.NODE_ENV === 'production'
   ? ['https://saasmotion.com', 'https://www.saasmotion.com'] 
   : ['http://localhost:3000'];
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const response = NextResponse.next();
   const origin = request.headers.get('origin');
   const isApiRoute = request.nextUrl.pathname.startsWith('/api/');

@@ -42,7 +42,7 @@ export function RivePlayer({
   }, [input, inputValue]);
 
   return (
-    <div className={elative w-full h-full \}>
+    <div className={`relative w-full h-full ${className}`}>
       <RiveComponent className="w-full h-full" />
     </div>
   );
