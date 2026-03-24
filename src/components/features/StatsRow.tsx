@@ -13,7 +13,7 @@ const fadeUp = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.5, ease: "easeInOut" },
+    transition: { delay: i * 0.1, duration: 0.5, ease: "easeInOut" as const },
   }),
 };
 
@@ -38,7 +38,7 @@ export function StatsRow() {
             </div>
             <div
               className="text-[9px] tracking-[0.18em] uppercase mt-1"
-              style={{ fontFamily: "var(--mono)", color: "var(--muted)" }}
+              style={{ fontFamily: "var(--font-mono)", color: "var(--muted)" }}
             >
               {s.label}
             </div>

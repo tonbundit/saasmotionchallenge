@@ -19,7 +19,7 @@ const fadeUp = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.5, ease: "easeInOut" },
+    transition: { delay: i * 0.1, duration: 0.5, ease: "easeInOut" as const },
   }),
 };
 
@@ -213,13 +213,13 @@ export default function Home() {
         <div className="flex gap-12 animate-marquee">
           <span
             className="text-[10px] font-bold uppercase tracking-[0.2em] italic"
-            style={{ fontFamily: "var(--mono)", color: "var(--accent)" }}
+            style={{ fontFamily: "var(--font-mono)", color: "var(--accent)" }}
           >
             SAAS MOTION // 50 WEEK CHALLENGE // LOTTIE & RIVE READY // CLEAN ARCHITECTURE // TYPE-SAFE // FRAME-RATE OPTIMIZED // SUPABASE AUTH //
           </span>
           <span
             className="text-[10px] font-bold uppercase tracking-[0.2em] italic"
-            style={{ fontFamily: "var(--mono)", color: "var(--accent)" }}
+            style={{ fontFamily: "var(--font-mono)", color: "var(--accent)" }}
           >
             SAAS MOTION // 50 WEEK CHALLENGE // LOTTIE & RIVE READY // CLEAN ARCHITECTURE // TYPE-SAFE // FRAME-RATE OPTIMIZED // SUPABASE AUTH //
           </span>
