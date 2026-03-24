@@ -1,8 +1,11 @@
 ﻿"use client";
 
 import { motion } from "framer-motion";
+import { useAuthStore } from "@/store/useAuthStore";
 
 export function Topbar() {
+  const { user, isAuthenticated } = useAuthStore();
+
   return (
     <motion.nav
       initial={{ y: -60, opacity: 0 }}
@@ -26,11 +29,27 @@ export function Topbar() {
 
       <div className="tb-sp" />
 
-      <div className="pill pill-s hidden md:inline-flex">
-        <span style={{ fontSize: 7 }}>—</span> v2.0 LIVE
-      </div>
-      <div className="pill pill-w hidden lg:inline-flex">
-        <strong>50</strong> Week Challenge
+      {/* Auth Status */}
+      <div className="flex items-center gap-4">
+        {isAuthenticated ? (
+          <div className="user-pill">
+            <span className="hidden sm:inline">{user?.email}</span>
+            <button 
+              className="user-logout"
+              onClick={() => { /* Supabase signout logic */ }}
+            >
+              <span className="ms">logout</span>
+            </button>
+          </div>
+        ) : (
+          <div className="pill pill-w">
+            Guest <span className="ml-2 text-[10px] opacity-50">MODE</span>
+          </div>
+        )}
+        
+        <div className="pill pill-s hidden md:inline-flex">
+          <span style={{ fontSize: 7 }}>—</span> v2.0 LIVE
+        </div>
       </div>
     </motion.nav>
   );
