@@ -23,7 +23,7 @@ const fadeUp = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.5, ease: "easeInOut" },
+    transition: { delay: i * 0.1, duration: 0.5, ease: "easeInOut" as const },
   }),
 };
 
@@ -143,7 +143,7 @@ export default function Home() {
               strokeDasharray="351.86"
               initial={{ strokeDashoffset: 351.86 }}
               animate={{ strokeDashoffset: 351.86 * 0.85 }}
-              transition={{ delay: 0.8, duration: 1.5, ease: "easeInOut" }}
+              transition={{ delay: 0.8, duration: 1.5, ease: "easeInOut" as const }}
               style={{ transform: "rotate(-90deg)", transformOrigin: "center" }}
             />
             <text
