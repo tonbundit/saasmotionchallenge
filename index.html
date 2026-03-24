@@ -107,13 +107,15 @@
     .logo-icon {
       width: 28px;
       height: 28px;
-      background: var(--accent);
       border-radius: 7px;
-      display: grid;
-      place-items: center;
-      font-size: 13px;
-      font-weight: 900;
-      color: var(--bg);
+      overflow: hidden;
+      display: block;
+    }
+
+    .logo-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .logo span {
@@ -2413,7 +2415,10 @@
 <body>
   <header class="topbar">
     <div class="logo">
-      <div class="logo-icon">SM</div>SaaS<span>Motion</span>
+      <div class="logo-icon">
+        <img src="Logo.svg" alt="SaaS Motion Logo">
+      </div>
+      SaaS<span>Motion</span>
     </div>
     <div class="tb-sp"></div>
     <div class="pill pill-s"><span class="ms" style="font-size:14px;">local_fire_department</span><span id="sv">0</span>
