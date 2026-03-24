@@ -9,7 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.18.7",
     "@prisma/client": "^7.5.0",
+    "@rive-app/react-canvas": "^4.27.2",
     "clsx": "^2.1.1",
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.0.1",
