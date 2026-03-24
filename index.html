@@ -205,6 +205,32 @@
       margin-left: 8px;
     }
 
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 18px;
+      border: 1px solid var(--border2);
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .15s;
+      background: rgba(255, 255, 255, .03);
+      color: var(--text2);
+      margin-left: 8px;
+    }
+
+    .lang-btn:hover {
+      background: rgba(255, 255, 255, .08);
+      color: var(--text);
+    }
+
+    .lang-btn span {
+      font-size: 14px !important;
+    }
+
     .auth-btn:hover {
       background: rgba(255, 255, 255, .07);
       color: var(--text);
@@ -2422,10 +2448,14 @@
       SaaS<span>Motion</span>
     </div>
     <div class="tb-sp"></div>
+    <button class="lang-btn" onclick="toggleLang()">
+      <span class="ms">language</span>
+      <span id="lang-label">EN</span>
+    </button>
     <div class="pill pill-s"><span class="ms" style="font-size:14px;">local_fire_department</span><span id="sv">0</span>
-      week streak</div>
+      <span data-i18n="streak_unit">week streak</span></div>
     <div class="pill pill-w"><span class="ms" style="font-size:14px;">calendar_view_week</span><strong
-        id="dv">0</strong>&nbsp;/ 50 weeks</div>
+        id="dv">0</strong>&nbsp;/ 50 <span data-i18n="weeks_unit">weeks</span></div>
     <button class="bell-btn" id="bell" onclick="toggleNp()"><span class="ms"
         style="font-size:20px;">notifications</span>
       <div class="bell-dot" id="bdot"></div>
@@ -2433,19 +2463,18 @@
   </header>
   <div class="action-bar">
     <button class="ab-btn on" id="ab-ch" onclick="setView('ch')"><span
-        class="ms">home_app_logo</span>Challenges</button>
+        class="ms">home_app_logo</span><span data-i18n="challenges_tab">Challenges</span></button>
     <button class="ab-btn" id="ab-gl" onclick="setView('gl')"><span
-        class="ms">auto_awesome_motion</span>Gallery</button>
-    <button class="ab-btn" id="ab-pr" onclick="setView('pr')"><span class="ms">person</span>Profile</button>
+        class="ms">auto_awesome_motion</span><span data-i18n="gallery_tab">Gallery</span></button>
+    <button class="ab-btn" id="ab-pr" onclick="setView('pr')"><span class="ms">person</span><span data-i18n="profile_tab">Profile</span></button>
   </div>
 
   <div id="view-ch" class="view-section on">
     <section class="hero">
       <div>
-        <div class="hero-eye">50-Week Challenge · SaaS Motion Design</div>
-        <h1 class="hero-h1"><em>SaaS Motion</em><br>Graphics Challenge</h1>
-        <p class="hero-sub">โจทย์ใหม่ทุกสัปดาห์ · Deadline 7 วัน · Auto-unlock<br>5 Day Breakdown · จับเวลา · สรุปผลงาน
-          · ครบ 50 สัปดาห์</p>
+        <div class="hero-eye" data-i18n="hero_eye">50-Week Challenge · SaaS Motion Design</div>
+        <h1 class="hero-h1"><em data-i18n="hero_h1_1">SaaS Motion</em> <span data-i18n="hero_h1_2">Graphics Challenge</span></h1>
+        <p class="hero-sub" data-i18n="hero_sub">New prompt weekly · 7-day deadline · Auto-unlock 5-day breakdown · Timer · Recap work · 50 weeks complete</p>
       </div>
       <div class="ring-wrap">
         <svg class="ring-svg" viewBox="0 0 130 130">
@@ -2454,55 +2483,53 @@
           <text x="65" y="61" text-anchor="middle" fill="#f0f0f6" font-size="22" font-family="'Syne',sans-serif"
             font-weight="800" id="rpct">0%</text>
           <text x="65" y="76" text-anchor="middle" fill="#52526e" font-size="9" font-family="'DM Mono',monospace"
-            letter-spacing="2">COMPLETE</text>
+            letter-spacing="2" data-i18n="complete_label">COMPLETE</text>
         </svg>
-        <div class="ring-lbl">Overall Progress</div>
+        <div class="ring-lbl" data-i18n="overall_progress">Overall Progress</div>
       </div>
     </section>
     <main class="main">
       <div class="ac" id="ac">
         <div class="ac-in">
           <div class="ac-top">
-            <div class="ac-badge"><span class="ms" style="font-size:12px;">bolt</span><span id="aclbl">WEEK 01 —
+            <div class="ac-badge"><span class="ms" style="font-size:12px;">bolt</span><span id="aclbl" data-i18n="week_active">WEEK 01 —
                 ACTIVE</span></div>
             <div class="ac-title" id="actt">—</div>
             <div class="ac-cd" id="accd">
               <div class="cd-seg">
                 <div class="cd-n" id="cdd">7</div>
-                <div class="cd-u">วัน</div>
+                <div class="cd-u" data-i18n="day_unit">Days</div>
               </div>
               <div class="cd-seg">
                 <div class="cd-n" id="cdh">00</div>
-                <div class="cd-u">ชม.</div>
+                <div class="cd-u" data-i18n="hour_unit">Hrs.</div>
               </div>
               <div class="cd-seg">
                 <div class="cd-n" id="cdm">00</div>
-                <div class="cd-u">น.</div>
+                <div class="cd-u" data-i18n="min_unit">Min.</div>
               </div>
               <div class="cd-seg">
                 <div class="cd-n" id="cds">00</div>
-                <div class="cd-u">วิ.</div>
+                <div class="cd-u" data-i18n="sec_unit">Sec.</div>
               </div>
             </div>
           </div>
           <div class="ac-days" id="acdays"></div>
           <div class="ac-act">
-            <button class="btn-a" id="acopen"><span class="ms"
-                style="font-size:16px;">open_in_new</span>เปิดโจทย์สัปดาห์นี้</button>
-            <button class="btn-g" id="acdone"><span class="ms"
-                style="font-size:16px;">done_all</span>ทำครบทุกวันแล้ว</button>
+            <button class="btn-a" id="acopen" data-i18n="open_challenge">Open this week's prompt</button>
+            <button class="btn-g" id="acdone" data-i18n="done_challenge">Mark all complete</button>
             <div class="ac-prog"><span class="ms" style="font-size:13px;">check_circle</span><span
-                id="acprog">0/5</span> วันเสร็จ</div>
+                id="acprog">0/5</span> <span data-i18n="days_done">days done</span></div>
           </div>
         </div>
       </div>
       <div class="sec-hd">
-        <div class="sec-tt"><span class="ms" style="font-size:13px;">grid_view</span>50 สัปดาห์</div>
+        <div class="sec-tt"><span class="ms" style="font-size:13px;">grid_view</span><span data-i18n="all_weeks">50 Weeks</span></div>
         <div class="ftabs">
-          <button class="ftab on" onclick="setF('all',this)">ทั้งหมด</button>
-          <button class="ftab" onclick="setF('current',this)">กำลังทำ</button>
-          <button class="ftab" onclick="setF('done',this)">เสร็จ</button>
-          <button class="ftab" onclick="setF('expired',this)">หมดเวลา</button>
+          <button class="ftab on" onclick="setF('all',this)" data-i18n="all_tab">All</button>
+          <button class="ftab" onclick="setF('current',this)" data-i18n="current_tab">Current</button>
+          <button class="ftab" onclick="setF('done',this)" data-i18n="done_tab">Done</button>
+          <button class="ftab" onclick="setF('expired',this)" data-i18n="expired_tab">Expired</button>
         </div>
       </div>
       <div class="wgrid" id="wg"></div>
@@ -2512,9 +2539,9 @@
   <div id="view-gl" class="view-section">
     <section class="hero" style="padding-bottom:20px;">
       <div>
-        <div class="hero-eye" style="color:var(--accent)">Showcase · Hall of Fame</div>
-        <h1 class="hero-h1"><em>Work</em>Gallery</h1>
-        <p class="hero-sub">รวมผลงานที่คุณพิชิตได้สำเร็จในแต่ละสัปดาห์</p>
+        <div class="hero-eye" style="color:var(--accent)" data-i18n="gallery_eye">Showcase · Hall of Fame</div>
+        <h1 class="hero-h1" data-i18n="gallery_h1">Work Gallery</h1>
+        <p class="hero-sub" data-i18n="gallery_sub">Revisit the challenges you successfully conquered each week.</p>
       </div>
     </section>
     <main class="main">
@@ -2525,29 +2552,29 @@
   <div id="view-pr" class="view-section">
     <section class="hero" style="padding-bottom:20px;">
       <div>
-        <div class="hero-eye" style="color:var(--accent4)">User Stats · Achievements</div>
-        <h1 class="hero-h1"><em>My</em>Profile</h1>
-        <p class="hero-sub" id="pr-email">เข้าสู่ระบบเพื่อดูข้อมูลส่วนตัวของคุณ</p>
+        <div class="hero-eye" style="color:var(--accent4)" data-i18n="profile_eye">User Stats · Achievements</div>
+        <h1 class="hero-h1" data-i18n="profile_h1">My Profile</h1>
+        <p class="hero-sub" id="pr-email" data-i18n="profile_login_msg">Please login to view your personal stats</p>
       </div>
     </section>
     <main class="main">
       <div class="pr-stats">
         <div class="pr-stat-card">
           <div class="pr-stat-n" id="stat-done">0</div>
-          <div class="pr-stat-l">Weeks Done</div>
+          <div class="pr-stat-l" data-i18n="weeks_done_stat">Weeks Done</div>
         </div>
         <div class="pr-stat-card">
           <div class="pr-stat-n" id="stat-streak">0</div>
-          <div class="pr-stat-l">Current Streak</div>
+          <div class="pr-stat-l" data-i18n="current_streak_stat">Current Streak</div>
         </div>
         <div class="pr-stat-card">
           <div class="pr-stat-n" id="stat-hours">0h</div>
-          <div class="pr-stat-l">Total Time</div>
+          <div class="pr-stat-l" data-i18n="total_time_stat">Total Time</div>
         </div>
       </div>
       <div class="sec-hd">
         <div class="sec-tt"><span class="ms"
-            style="font-size:13px;color:var(--accent4)">workspace_premium</span>ความสำเร็จ (Achievements)</div>
+            style="font-size:13px;color:var(--accent4)">workspace_premium</span><span data-i18n="achievements_title">Achievements</span></div>
       </div>
       <div class="ach-grid" id="ach-grid"></div>
     </main>
@@ -2569,42 +2596,42 @@
   <div class="mwrap" id="mwrap">
     <div class="modal">
       <div class="m-top">
-        <div class="m-wlbl" id="mwlbl">WEEK 01 COMPLETE</div>
+        <div class="m-wlbl" id="mwlbl" data-i18n="week_complete_title">WEEK 01 COMPLETE</div>
         <div class="m-title" id="mtt">—</div>
         <div class="m-sub" id="msub">—</div>
         <div class="m-stats">
           <div class="st-cell">
             <div class="st-n" id="mdays">5/5</div>
-            <div class="st-l">Days Done</div>
+            <div class="st-l" data-i18n="days_done">days done</div>
           </div>
           <div class="st-cell">
             <div class="st-n" id="mtime">—</div>
-            <div class="st-l">Total Time</div>
+            <div class="st-l" data-i18n="total_time_stat">Total Time</div>
           </div>
           <div class="st-cell">
             <div class="st-n" id="mleft">—</div>
-            <div class="st-l">Days Early</div>
+            <div class="st-l" data-i18n="days_early_stat">Days Early</div>
           </div>
         </div>
         <div class="m-days" id="mdaysrow"></div>
 
         <div class="m-input-box">
-          <div class="m-input-lbl">Showcase your work</div>
+          <div class="m-input-lbl" data-i18n="showcase_work">Showcase your work</div>
           <input type="text" id="m-video-url" class="m-url-input"
-            placeholder="วางลิงก์ YouTube หรือ Vimeo ของคุณที่นี่">
+            data-i18n-placeholder="video_placeholder" placeholder="Paste your YouTube or Vimeo link here">
         </div>
 
         <div class="m-next" id="mnext">
           <div class="m-next-ic"><span class="ms" style="font-size:18px;color:var(--accent);">arrow_forward</span></div>
           <div>
-            <div class="m-next-lbl">สัปดาห์ถัดไป — ปลดล็อคแล้ว!</div>
+            <div class="m-next-lbl" data-i18n="next_week_unlock">Next Week — UNLOCKED!</div>
             <div class="m-next-tt" id="mnexttt">—</div>
           </div>
         </div>
       </div>
       <div class="m-btns">
-        <button class="btn-a" id="mbtnsave"><span class="ms" style="font-size:16px;">save</span>บันทึกผลงาน</button>
-        <button class="btn-g" onclick="closeSum()"><span class="ms" style="font-size:16px;">close</span>ปิด</button>
+        <button class="btn-a" id="mbtnsave"><span class="ms" style="font-size:16px;">save</span><span data-i18n="save_work">Save Progress</span></button>
+        <button class="btn-g" onclick="closeSum()"><span class="ms" style="font-size:16px;">close</span><span data-i18n="close_btn">Close</span></button>
       </div>
     </div>
   </div>
@@ -2613,8 +2640,8 @@
     <div class="modal">
       <div class="m-top">
         <div class="m-wlbl">ACCOUNT ACCESS</div>
-        <div class="m-title">Login / Sign Up</div>
-        <div class="m-sub">Your progress will be saved to Supabase</div>
+        <div class="m-title" data-i18n="login_title">Login / Sign Up</div>
+        <div class="m-sub" data-i18n="login_msg">Your progress will be saved to Supabase</div>
         <div class="auth-form">
           <input type="email" id="authEmail" class="auth-input" placeholder="Email Address">
           <input type="password" id="authPass" class="auth-input" placeholder="Password">
@@ -2625,7 +2652,7 @@
           
           <button class="btn-google" onclick="signInWithGoogle()">
             <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="16" height="16">
-            Sign in with Google
+            <span data-i18n="google_login">Sign in with Google</span>
           </button>
         </div>
       </div>
@@ -2634,11 +2661,243 @@
 
   <div class="np" id="np">
     <div class="np-hd"><span class="ms" style="font-size:16px;color:var(--accent3)">notifications</span><span
-        class="np-tt">การแจ้งเตือน</span><button class="np-cl" onclick="clearN()">ล้างทั้งหมด</button></div>
+        class="np-tt" data-i18n="notif_title">Notifications</span><button class="np-cl" onclick="clearN()" data-i18n="clear_all">Clear All</button></div>
     <div class="np-list" id="nplist"></div>
   </div>
   <div class="snackbar" id="snack"></div>
   <script>
+    const TRANSLATIONS = {
+      en: {
+        streak_unit: "week streak",
+        weeks_unit: "weeks",
+        challenges_tab: "Challenges",
+        gallery_tab: "Gallery",
+        profile_tab: "Profile",
+        hero_eye: "50-Week Challenge · SaaS Motion Design",
+        hero_h1_1: "SaaS Motion",
+        hero_h1_2: "Graphics Challenge",
+        hero_sub: "New prompt weekly · 7-day deadline · Auto-unlock 5-day breakdown · Timer · Recap work · 50 weeks complete",
+        overall_progress: "Overall Progress",
+        complete_label: "COMPLETE",
+        week_active: "WEEK %n% — ACTIVE",
+        day_unit: "Days",
+        hour_unit: "Hrs",
+        min_unit: "Min",
+        sec_unit: "Sec",
+        open_challenge: "Open this week's prompt",
+        done_challenge: "All days complete",
+        days_done: "days done",
+        all_weeks: "All Weeks",
+        all_tab: "All",
+        current_tab: "Current",
+        done_tab: "Done",
+        expired_tab: "Expired",
+        gallery_eye: "Showcase · Hall of Fame",
+        gallery_h1: "Work Gallery",
+        gallery_sub: "Revisit the challenges you successfully conquered each week.",
+        profile_eye: "User Stats · Achievements",
+        profile_h1: "My Profile",
+        profile_login_msg: "Please login to view your personal stats",
+        weeks_done_stat: "Weeks Done",
+        current_streak_stat: "Current Streak",
+        total_time_stat: "Total Time",
+        achievements_title: "Achievements",
+        week_complete_title: "WEEK %n% COMPLETE",
+        showcase_work: "Showcase your work",
+        video_placeholder: "Paste your YouTube or Vimeo link here",
+        next_week_unlock: "Next Week — UNLOCKED!",
+        save_work: "Save Progress",
+        close_btn: "Close",
+        login_title: "Login / Sign Up",
+        login_msg: "Your progress will be saved to Supabase",
+        login_btn: "Login",
+        signup_btn: "Sign Up",
+        logout_btn: "Logout",
+        google_login: "Sign in with Google",
+        notif_title: "Notifications",
+        clear_all: "Clear All",
+        empty_notif: "No notifications yet",
+        empty_gallery: "No works in gallery yet. Complete a challenge and attach a link to showcase it here!",
+        stat_done: "Weeks Done",
+        stat_streak: "Current Streak",
+        stat_hours: "Total Time",
+        week_expired: "Week %n% Expired",
+        next_week_ready: "Next week unlocked!",
+        auth_required: "Please fill in all details",
+        login_success: "Login successful! 🚀",
+        week_unlocked: "🔓 Week %n%: \"%t%\" Unlocked!",
+        just_now: "Just now",
+        ago_m: "m ago",
+        ago_h: "h ago",
+        ago_d: "d ago",
+        finished_on: "Finished on",
+        days_early_stat: "Days Early",
+        client_profile: "01 — CLIENT PROFILE",
+        status_active: "🔥 ACTIVE",
+        status_done: "✓ DONE",
+        status_locked: "🔒 LOCKED",
+        status_expired: "⚡ EXPIRED",
+        remaining_unit: "left",
+        day_done_unit: "days",
+        expired_label: "Expired",
+        wait_unlock: "Wait to unlock",
+        signup_error: "Sign up error:",
+        signup_success: "Sign up successful! 📧\n\nPlease check your email for a verification link.",
+        login_to_view: "Login to view your stats",
+        business_problem: "02 — THE BUSINESS PROBLEM",
+        visual_direction: "03 — VISUAL DIRECTION & TONE",
+        technical_constraints: "04 — TECHNICAL CONSTRAINTS",
+        weekly_recipe: "05 — THE WEEKLY RECIPE",
+        company_label: "Company",
+        personality_label: "Brand Personality",
+        audience_label: "Target Audience",
+        tags_label: "Vertical Tags",
+        bottleneck_prob: "The Bottleneck Problem",
+        is_facing: "is facing a bottleneck",
+        objective: "Objective",
+        video_prompt: "60-90s Vertical/Square Video — Show dashboard and ease of use to trigger 'Book a Demo'",
+        art_direction: "Art Direction",
+        color_palette: "Color Palette",
+        brand_rules: "Brand Rules",
+        font_rules: "Font Rules",
+        modern_sans: "Modern Sans-serif",
+        colors_label: "Colors",
+        duration_label: "Duration",
+        ratio_label: "Ratio",
+        fps_label: "FPS",
+        format_label: "Format"
+      },
+      th: {
+        streak_unit: "สัปดาห์ที่ทำต่อเนื่อง",
+        weeks_unit: "สัปดาห์",
+        challenges_tab: "กิจกรรม",
+        gallery_tab: "แกลเลอรี",
+        profile_tab: "ข้อมูลส่วนตัว",
+        hero_eye: "ความท้าทาย 50 สัปดาห์ · SaaS Motion Design",
+        hero_h1_1: "SaaS Motion",
+        hero_h1_2: "Graphics Challenge",
+        hero_sub: "โจทย์ใหม่ทุกสัปดาห์ · Deadline 7 วัน · Auto-unlock 5 Day Breakdown · จับเวลา · สรุปผลงาน",
+        overall_progress: "ความคืบหน้ารวม",
+        complete_label: "สำเร็จแล้ว",
+        week_active: "สัปดาห์ที่ %n% — กำลังทำ",
+        day_unit: "วัน",
+        hour_unit: "ชม.",
+        min_unit: "น.",
+        sec_unit: "วิ.",
+        open_challenge: "เปิดโจทย์สัปดาห์นี้",
+        done_challenge: "ทำครบทุกวันแล้ว",
+        days_done: "วันเสร็จ",
+        all_weeks: "50 สัปดาห์",
+        all_tab: "ทั้งหมด",
+        current_tab: "กำลังทำ",
+        done_tab: "เสร็จ",
+        expired_tab: "หมดเวลา",
+        gallery_eye: "โชว์เคส · หอเกียรติยศ",
+        gallery_h1: "Work Gallery",
+        gallery_sub: "รวมผลงานที่คุณพิชิตได้สำเร็จในแต่ละสัปดาห์",
+        profile_eye: "สถิติผู้ใช้ · ความสำเร็จ",
+        profile_h1: "ข้อมูลของฉัน",
+        profile_login_msg: "เข้าสู่ระบบเพื่อดูข้อมูลส่วนตัวของคุณ",
+        weeks_done_stat: "สัปดาห์ที่จบ",
+        current_streak_stat: "ทำต่อเนื่อง",
+        total_time_stat: "เวลาทั้งหมด",
+        achievements_title: "ความสำเร็จ",
+        week_complete_title: "สัปดาห์ที่ %n% สำเร็จ!",
+        showcase_work: "บันทึกผลงานของคุณ",
+        video_placeholder: "วางลิงก์ YouTube หรือ Vimeo ของคุณที่นี่",
+        next_week_unlock: "สัปดาห์ถัดไป — ปลดล็อคแล้ว!",
+        save_work: "บันทึกข้อมูล",
+        close_btn: "ปิด",
+        login_title: "เข้าสู่ระบบ / สมัครสมาชิก",
+        login_msg: "ความคืบหน้าโฮสต์บน Supabase",
+        login_btn: "เข้าสู่ระบบ",
+        signup_btn: "สมัครสมาชิก",
+        logout_btn: "ออกจากระบบ",
+        google_login: "เข้าด้วย Google",
+        notif_title: "การแจ้งเตือน",
+        clear_all: "ล้างทั้งหมด",
+        empty_notif: "ยังไม่มีการแจ้งเตือน",
+        empty_gallery: "ยังไม่มีผลงานในแกลเลอรี ทำภารกิจให้สำเร็จและแนบลิงก์เพื่อโชว์ที่นี่!",
+        stat_done: "จบสัปดาห์",
+        stat_streak: "ต่อเนื่อง",
+        stat_hours: "เวลารวม",
+        week_expired: "⚡ Week %n% หมดเวลา",
+        next_week_ready: "สัปดาห์ถัดไปปลดล็อคแล้ว",
+        auth_required: "กรุณากรอกข้อมูลให้ครบ",
+        login_success: "เข้าสู่ระบบสำเร็จ! 🚀",
+        week_unlocked: "🔓 Week %n%: \"%t%\" ปลดล็อคแล้ว!",
+        just_now: "เมื่อกี้",
+        ago_m: "น. ที่แล้ว",
+        ago_h: "ชม. ที่แล้ว",
+        ago_d: "วัน ที่แล้ว",
+        finished_on: "เสร็จเมื่อ",
+        days_early_stat: "ส่งก่อนกำหนด",
+        client_profile: "01 — ข้อมูลลูกค้า",
+        status_active: "🔥 ACTIVE",
+        status_done: "✓ DONE",
+        status_locked: "🔒 LOCKED",
+        status_expired: "⚡ EXPIRED",
+        remaining_unit: "เหลือ",
+        day_done_unit: "วัน",
+        expired_label: "หมดเวลา",
+        wait_unlock: "รอ unlock",
+        signup_error: "เกิดข้อผิดพลาดในการสมัครสมาชิก:",
+        signup_success: "สมัครสมาชิกสำเร็จ! 📧\n\nระบบได้ส่งลิงก์ยืนยันไปที่อีเมลของคุณแล้ว กรุณาตรวจสอบกล่องจดหมายของคุณครับ",
+        login_to_view: "เข้าสู่ระบบเพื่อดูข้อมูลส่วนตัวของคุณ",
+        business_problem: "02 — ปัญหาทางธุรกิจ",
+        visual_direction: "03 — ทิศทางงานภาพ",
+        technical_constraints: "04 — ข้อกำหนดทางเทคนิค",
+        weekly_recipe: "05 — ส่วนประกอบประจำสัปดาห์",
+        company_label: "บริษัท",
+        personality_label: "บุคลิกภาพแบรนด์",
+        audience_label: "กลุ่มเป้าหมาย",
+        tags_label: "ประเภทธุรกิจ",
+        bottleneck_prob: "ปัญหาคอขวด",
+        is_facing: "กำลังประสบปัญหา",
+        objective: "เป้าหมาย",
+        video_prompt: "วิดีโอ 60-90 วินาที — โชว์ Dashboard และความง่ายในการใช้ เพื่อกระตุ้น 'Book a Demo'",
+        art_direction: "ทิศทางศิลป์",
+        color_palette: "ชุดสี",
+        brand_rules: "กฎของแบรนด์",
+        font_rules: "ฟอนต์",
+        modern_sans: "Modern Sans-serif",
+        colors_label: "สี",
+        duration_label: "ระยะเวลา",
+        ratio_label: "สัดส่วน",
+        fps_label: "เฟรมเรต",
+        format_label: "นามสกุลไฟล์"
+      }
+    };
+
+    let curLang = localStorage.getItem('saas_lang') || 'en';
+    document.documentElement.lang = curLang;
+
+    function setLanguage(l) {
+      curLang = l; localStorage.setItem('saas_lang', l);
+      document.documentElement.lang = l;
+      const lbl = document.getElementById('lang-label');
+      if (lbl) lbl.innerText = l.toUpperCase();
+      updateI18n();
+      if (typeof S !== 'undefined' && S) renderAll();
+    }
+
+    function updateI18n() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        let text = TRANSLATIONS[curLang][key];
+        if (text) {
+          if (key === 'week_active') {
+            const n = document.getElementById('pnchip')?.innerText.replace('WEEK ', '') || '01';
+            text = text.replace('%n%', n);
+          }
+          el.innerText = text;
+        }
+      });
+      // Tooltip/Placeholder updates
+      const vInput = document.getElementById('m-video-url');
+      if (vInput) vInput.placeholder = TRANSLATIONS[curLang].video_placeholder;
+    }
+
     const WD = [
       { t: 'OpenAI — ChatGPT Enterprise', tags: ['AI/ML', 'SaaS'], days: ['Script & Storyboard', 'Styleframes & Design System', 'Hero Animation — Neural Flow', 'Micro-interactions & Polish', 'Sound Design & Export'] },
       { t: 'Stripe — Payment Flow Visualization', tags: ['PayTech', 'Motion'], days: ['Research & Script', 'UI Components', 'Transaction Animation', 'Dashboard Motion', 'Export & Case Study'] },
@@ -2691,6 +2950,7 @@
       { t: 'Portfolio Capstone — Personal Brand', tags: ['Personal', 'Career'], days: ['Brand System', 'Case Study 1', 'Case Study 2', 'Showreel', 'Launch'] },
       { t: 'FINAL: 50-Week Retrospective', tags: ['Milestone', 'Portfolio'], days: ['Year in Review', 'Skills Analysis', 'Best Work Compilation', 'Future Roadmap', 'Celebration 🏆'] }
     ];
+
     function _s(str) {
       if (!str) return '';
       return String(str).replace(/[&<>'"]/g, match =>
@@ -2745,21 +3005,20 @@
     WD.forEach(w => {
       const mainTag = w.tags[0] || 'SaaS';
       const ciMap = {
-
-        'FinTech': { col: 'Trust Navy & Neon Mint (#48E5C2)', target: 'CFO, นักลงทุน, หรือเจ้าของกิจการ', pain: 'ระบบการเงินเดิมยุ่งยากและล่าช้า ไร้ประสิทธิภาพ', swatches: ['#05050D', '#0D2137', '#00C2FF', '#00FF94', '#FF3C5F'], mood: 'Bloomberg × Inception × Stripe Radar' },
-        'AI/ML': { col: 'Deep Purple & Electric Cyan (#00F5FF)', target: 'CTO, Tech Lead', pain: 'กระบวนการทำงานแบบ Manual ที่สิ้นเปลืองเวลา', swatches: ['#0A0A16', '#1A1838', '#A855F7', '#00F5FF', '#FF007A'], mood: 'Sci-fi, Intelligent, Futuristic' },
-        'HealthTech': { col: 'Clean White & Medical Teal (#20B2AA)', target: 'ผู้ให้บริการทางการแพทย์, ผู้บริหารคลินิก', pain: 'การจัดการข้อมูลคนไข้ที่ซับซ้อนและใช้เอกสารเยอะ', swatches: ['#F6F8FB', '#FFFFFF', '#20B2AA', '#4285F4', '#FF6B6B'], mood: 'Clinical, Trustworthy, Safe' },
-        'EdTech': { col: 'Vibrant Yellow & Smart Blue (#118AB2)', target: 'สถาบันการศึกษา, HR Manager (Corporate Training)', pain: 'ระบบการเรียนรู้ที่น่าเบื่อ ขาดความอินเตอร์แอคทีฟ', swatches: ['#FAF9F6', '#118AB2', '#FFD166', '#EF476F', '#06D6A0'], mood: 'Playful, Encouraging, Bright' },
-        'E-Commerce': { col: 'Commerce Orange & Charcoal (#333333)', target: 'Online Retailers, Brand Managers', pain: 'อัตราการละทิ้งตะกร้าสินค้า (Cart Abandonment) สูง', swatches: ['#1A1A1A', '#333333', '#F4A261', '#E76F51', '#2A9D8F'], mood: 'Urgent, Vibrant, Conversion-focused' },
-        'Cybersecurity': { col: 'Hacker Green & Pitch Black (#000000)', target: 'IT Security Directors, CIO', pain: 'ความกังวลเรื่อง Data Breach และปกป้องข้อมูลไม่รัดกุม', swatches: ['#000000', '#0D1B2A', '#00FF00', '#FF003C', '#BFDBF7'], mood: 'Secure, Command-line, Alert' },
-        'Logistics': { col: 'Speed Red & Industrial Grey (#4A4E69)', target: 'Supply Chain Managers', pain: 'ไม่สามารถติดตามสถานะการจัดส่งได้แบบ Real-time', swatches: ['#1B263B', '#4A4E69', '#E63946', '#F1FAEE', '#A8DADC'], mood: 'Global, Efficient, Systematic' },
-        'Data/Analytics': { col: 'Electric Indigo & Platinum', target: 'Data Scientists, Marketing Heads', pain: 'มีข้อมูลจำนวนมหาศาลแต่ไม่สามารถนำมาวิเคราะห์ใช้งานได้จริงในทันที', swatches: ['#080810', '#13131F', '#4361EE', '#F72585', '#4CC9F0'], mood: 'Analytical, Macro-perspective' }
+        'FinTech': { col: 'Trust Navy & Neon Mint (#48E5C2)', target: 'CFO, Investors, or Business Owners', pain: 'Legacy financial systems are complex and inefficient', mood: 'Bloomberg × Inception × Stripe Radar', swatches: ['#0A2540', '#48E5C2', '#FFFFFF', '#D1D5DB', '#111827'] },
+        'AI/ML': { col: 'Deep Purple & Electric Cyan (#00F5FF)', target: 'CTO, Tech Lead', pain: 'Slow, time-consuming manual workflows', mood: 'Sci-fi, Intelligent, Futuristic', swatches: ['#1A1A2E', '#00F5FF', '#A855F7', '#0F3460', '#E94560'] },
+        'HealthTech': { col: 'Clean White & Medical Teal (#20B2AA)', target: 'Healthcare Providers, Clinic Managers', pain: 'Complex patient data management and paper workflows', mood: 'Clinical, Trustworthy, Safe', swatches: ['#FFFFFF', '#20B2AA', '#F0F9F9', '#7DD3FC', '#0F172A'] },
+        'EdTech': { col: 'Vibrant Yellow & Smart Blue (#118AB2)', target: 'Educational Institutions, HR Managers', pain: 'Boring learning systems that lack interactivity', mood: 'Playful, Encouraging, Bright', swatches: ['#FFD166', '#118AB2', '#06D6A0', '#EF476F', '#073B4C'] },
+        'E-Commerce': { col: 'Commerce Orange & Charcoal (#333333)', target: 'Online Retailers, Brand Managers', pain: 'High cart abandonment rates', mood: 'Urgent, Vibrant, Conversion-focused', swatches: ['#FF5A5F', '#333333', '#FFFFFF', '#FFB400', '#484848'] },
+        'Cybersecurity': { col: 'Hacker Green & Pitch Black (#000000)', target: 'IT Security Directors, CIO', pain: 'Concerns over recurring data breaches and weak protection', mood: 'Secure, Command-line, Alert', swatches: ['#00FF41', '#000000', '#0D0208', '#003B00', '#008F11'] },
+        'Logistics': { col: 'Speed Red & Industrial Grey (#4A4E69)', target: 'Supply Chain Managers', pain: 'Inability to track shipping status in real-time', mood: 'Global, Efficient, Systematic', swatches: ['#C0392B', '#4A4E69', '#2C3E50', '#BDC3C7', '#7F8C8D'] },
+        'Data/Analytics': { col: 'Electric Indigo & Platinum', target: 'Data Scientists, Marketing Heads', pain: 'Massive amounts of data that cannot be leveraged for insights', mood: 'Analytical, Macro-perspective', swatches: ['#4F46E5', '#F3F4F6', '#1E1B4B', '#6366F1', '#94A3B8'] }
       };
 
-      const profile = ciMap[mainTag] || { col: 'Primary Blue & Neutral Gray', target: 'Business Owners, ผู้จัดการทีม', pain: 'ปัญหาคอขวดในกระบวนการทำงานแบบดั้งเดิม', swatches: ['#121212', '#282828', '#4285F4', '#34A853', '#EA4335'], mood: 'Corporate, Clean, Professional' };
+      const profile = ciMap[mainTag] || { col: 'Primary Blue & Neutral Gray', target: 'Business Owners, Team Managers', pain: 'Traditional workflow bottlenecks', mood: 'Corporate, Clean, Professional', swatches: ['#4285F4', '#52526e', '#f0f0f6', '#ffffff', '#000000'] };
 
       const name = w.t.split('—')[0].trim();
-      const concept = w.t.includes('—') ? w.t.split('—')[1].trim() : `SaaS Platform บริหารจัดการสำหรับธุรกิจ ${mainTag}`;
+      const concept = w.t.includes('—') ? w.t.split('—')[1].trim() : `SaaS Platform for ${mainTag} business`;
 
       const bData = brandData[name];
       const domain = bData ? bData.domain : name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase() + '.com';
@@ -2773,45 +3032,45 @@
       w.descHtml = `
 <div style="padding:0 20px;">
   <!-- CLIENT -->
-  <div class="section-label"><span class="ms" style="font-size:13px;">business</span>01 — CLIENT PROFILE</div>
+  <div class="section-label"><span class="ms" style="font-size:13px;">business</span>01 — ${TRANSLATIONS[curLang].client_profile}</div>
   <div class="block-grid grid-2">
     <div class="uni-card client-card c1" style="display:flex;gap:16px;align-items:center;">
       <img src="${logoUrl}" onerror="this.onerror=null; this.src='${fbUrl}';" style="border-radius:12px;border:1px solid rgba(255,255,255,0.1);width:56px;height:56px;object-fit:contain;background:#fff;padding:4px;" alt="${name} Logo"/>
       <div>
-        <div class="card-label" style="margin-bottom:6px;"><span class="ms" style="font-size:12px;">domain</span>Company</div>
+        <div class="card-label" style="margin-bottom:6px;"><span class="ms" style="font-size:12px;">domain</span>${TRANSLATIONS[curLang].company_label}</div>
         <div class="card-value large" style="font-size:18px;">${name}</div>
         <a href="${webLink}" target="_blank" style="font-family:var(--mono);font-size:10px;color:var(--accent);margin-top:6px;display:inline-flex;align-items:center;gap:4px;text-decoration:none;word-break:break-all;"><span class="ms" style="font-size:12px;">open_in_new</span>${webLink}</a>
       </div>
     </div>
-    <div class="uni-card client-card c2"><div class="card-label"><span class="ms" style="font-size:12px;">psychology</span>Brand Personality</div><div class="card-value" style="font-size:13px;line-height:1.7;">${profile.mood}</div></div>
-    <div class="uni-card client-card c3"><div class="card-label"><span class="ms" style="font-size:12px;">groups</span>Target Audience</div><div class="card-value" style="font-size:13px;line-height:1.7;">${profile.target}</div></div>
-    <div class="uni-card client-card c4"><div class="card-label"><span class="ms" style="font-size:12px;">label</span>Vertical Tags</div><div class="tag-list"><span class="tag">${mainTag}</span><span class="tag">B2B SaaS</span><span class="tag">Tech</span></div></div>
+    <div class="uni-card client-card c2"><div class="card-label"><span class="ms" style="font-size:12px;">psychology</span>${TRANSLATIONS[curLang].personality_label}</div><div class="card-value" style="font-size:13px;line-height:1.7;">${profile.mood}</div></div>
+    <div class="uni-card client-card c3"><div class="card-label"><span class="ms" style="font-size:12px;">groups</span>${TRANSLATIONS[curLang].audience_label}</div><div class="card-value" style="font-size:13px;line-height:1.7;">${profile.target}</div></div>
+    <div class="uni-card client-card c4"><div class="card-label"><span class="ms" style="font-size:12px;">label</span>${TRANSLATIONS[curLang].tags_label}</div><div class="tag-list"><span class="tag">${mainTag}</span><span class="tag">B2B SaaS</span><span class="tag">Tech</span></div></div>
   </div>
 
   <!-- PROBLEM -->
-  <div class="section-label"><span class="ms" style="font-size:13px;">crisis_alert</span>02 — THE BUSINESS PROBLEM</div>
-  <div class="uni-card problem-block"><div class="accent-dot"></div><div class="problem-title">The Bottleneck Problem</div><p class="problem-text"><strong>${name} กำลังประสบปัญหา</strong> — ${profile.pain}</p><p class="problem-text" style="margin-top:12px;">โจทย์: <strong>Video Explainer 60-90 วินาที</strong> — <strong>โชว์ Dashboard, ความง่ายในการใช้งาน เพื่อกระตุ้นให้เกิด "Book a Demo"</strong></p></div>
+  <div class="section-label"><span class="ms" style="font-size:13px;">crisis_alert</span>02 — ${TRANSLATIONS[curLang].business_problem}</div>
+  <div class="uni-card problem-block"><div class="accent-dot"></div><div class="problem-title">${TRANSLATIONS[curLang].bottleneck_prob}</div><p class="problem-text"><strong>${name} ${TRANSLATIONS[curLang].is_facing}</strong> — ${profile.pain}</p><p class="problem-text" style="margin-top:12px;">${TRANSLATIONS[curLang].objective}: <strong>${TRANSLATIONS[curLang].video_prompt}</strong></p></div>
 
   <!-- VD -->
-  <div class="section-label"><span class="ms" style="font-size:13px;">palette</span>03 — VISUAL DIRECTION & TONE</div>
+  <div class="section-label"><span class="ms" style="font-size:13px;">palette</span>03 — ${TRANSLATIONS[curLang].visual_direction}</div>
   <div class="block-grid grid-auto">
-    <div class="uni-card vd-card"><div class="card-label"><span class="ms" style="font-size:12px;">style</span>Art Direction</div><div class="card-value" style="font-size:13px;margin-bottom:8px;">Abstract Data UI</div><div style="font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.6;">Clean, Minimalist & Tech-driven</div></div>
-    <div class="uni-card vd-card"><div class="card-label"><span class="ms" style="font-size:12px;">colorize</span>Color Palette</div><div class="color-swatches">${brandSwatches.map(c => '<div class="swatch-item"><div class="swatch" style="background:' + c + ';"></div><div class="swatch-label">' + c + '</div></div>').join('')}</div></div>
-    <div class="uni-card vd-card"><div class="card-label"><span class="ms" style="font-size:12px;">theater_comedy</span>Brand Rules</div><div class="card-value" style="font-size:13px;margin-bottom:8px;">สี ${brandCol}</div><div style="font-family:var(--mono);font-size:10px;color:var(--muted);">ฟอนต์ Modern Sans-serif</div></div>
+    <div class="uni-card vd-card"><div class="card-label"><span class="ms" style="font-size:12px;">style</span>${TRANSLATIONS[curLang].art_direction}</div><div class="card-value" style="font-size:13px;margin-bottom:8px;">Abstract Data UI</div><div style="font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.6;">Clean, Minimalist & Tech-driven</div></div>
+    <div class="uni-card vd-card"><div class="card-label"><span class="ms" style="font-size:12px;">colorize</span>${TRANSLATIONS[curLang].color_palette}</div><div class="color-swatches">${brandSwatches.map(c => '<div class="swatch-item"><div class="swatch" style="background:' + c + ';"></div><div class="swatch-label">' + c + '</div></div>').join('')}</div></div>
+    <div class="uni-card vd-card"><div class="card-label"><span class="ms" style="font-size:12px;">theater_comedy</span>${TRANSLATIONS[curLang].brand_rules}</div><div class="card-value" style="font-size:13px;margin-bottom:8px;">${TRANSLATIONS[curLang].colors_label}: ${brandCol}</div><div style="font-family:var(--mono);font-size:10px;color:var(--muted);">${TRANSLATIONS[curLang].font_rules}: ${TRANSLATIONS[curLang].modern_sans}</div></div>
   </div>
 
   <!-- CONSTRAINTS -->
-  <div class="section-label"><span class="ms" style="font-size:13px;">settings</span>04 — TECHNICAL CONSTRAINTS</div>
+  <div class="section-label"><span class="ms" style="font-size:13px;">settings</span>04 — ${TRANSLATIONS[curLang].technical_constraints}</div>
   <div class="block-grid grid-4" style="margin-bottom: 0;">
-    <div class="uni-card constraint-card"><div class="card-label" style="justify-content:center;margin-bottom:4px;"><span class="ms" style="font-size:12px;">timer</span>Duration</div><div class="constraint-val">60-90<span style="font-size:10px;color:var(--muted)">s</span></div></div>
-    <div class="uni-card constraint-card"><div class="card-label" style="justify-content:center;margin-bottom:4px;"><span class="ms" style="font-size:12px;">aspect_ratio</span>Ratio</div><div class="constraint-val">16:9, 1:1</div></div>
-    <div class="uni-card constraint-card"><div class="card-label" style="justify-content:center;margin-bottom:4px;"><span class="ms" style="font-size:12px;">speed</span>FPS</div><div class="constraint-val">60<span style="font-size:10px;color:var(--muted)">fps</span></div></div>
-    <div class="uni-card constraint-card"><div class="card-label" style="justify-content:center;margin-bottom:4px;"><span class="ms" style="font-size:12px;">build</span>Format</div><div class="constraint-val" style="font-size:12px;">MP4+MOV</div></div>
+    <div class="uni-card constraint-card"><div class="card-label" style="justify-content:center;margin-bottom:4px;"><span class="ms" style="font-size:12px;">timer</span>${TRANSLATIONS[curLang].duration_label}</div><div class="constraint-val">60-90<span style="font-size:10px;color:var(--muted)">s</span></div></div>
+    <div class="uni-card constraint-card"><div class="card-label" style="justify-content:center;margin-bottom:4px;"><span class="ms" style="font-size:12px;">aspect_ratio</span>${TRANSLATIONS[curLang].ratio_label}</div><div class="constraint-val">16:9, 1:1</div></div>
+    <div class="uni-card constraint-card"><div class="card-label" style="justify-content:center;margin-bottom:4px;"><span class="ms" style="font-size:12px;">speed</span>${TRANSLATIONS[curLang].fps_label}</div><div class="constraint-val">60<span style="font-size:10px;color:var(--muted)">fps</span></div></div>
+    <div class="uni-card constraint-card"><div class="card-label" style="justify-content:center;margin-bottom:4px;"><span class="ms" style="font-size:12px;">build</span>${TRANSLATIONS[curLang].format_label}</div><div class="constraint-val" style="font-size:12px;">MP4+MOV</div></div>
   </div>
 
   <!-- DAY HEADER -->
   <div class="divider"></div>
-  <div class="section-label"><span class="ms" style="font-size:13px;">restaurant_menu</span>05 — THE WEEKLY RECIPE</div>
+  <div class="section-label"><span class="ms" style="font-size:13px;">restaurant_menu</span>05 — ${TRANSLATIONS[curLang].weekly_recipe}</div>
 </div>
 `;
     });
@@ -2819,10 +3078,14 @@
     const SB_URL = 'https://fkwojpqzntwvubhabdlk.supabase.co';
     const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZrd29qcHF6bnR3dnViaGFiZGxrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzMDkzMzYsImV4cCI6MjA4OTg4NTMzNn0.i5haj9HS7pAHjd1_vMzA_JJCK49A_4UWhFVo5xhPt_o';
     const sb = supabase.createClient(SB_URL, SB_KEY);
-    let user = null;
-
-    let S = ld(), curF = 'all', openIdx = null, panIv = null, banIv = null, sumNxt = null;
+    var user = null;
+    var S = ld(), curF = 'all', openIdx = null, panIv = null, banIv = null, sumNxt = null;
     let notifs = ldn();
+
+    function toggleLang() {
+      const next = curLang === 'en' ? 'th' : 'en';
+      setLanguage(next);
+    }
 
     function ld() {
       try { const s = JSON.parse(localStorage.getItem(SK)); if (s) return s; } catch (e) { }
@@ -2834,7 +3097,7 @@
       try {
         const { data, error } = await sb.from('user_progress').select('data').eq('user_id', user.id).single();
         if (error && error.code !== 'PGRST116') throw error; // PGRST116 = no rows (ปกติสำหรับ user ใหม่)
-        if (data?.data) { S = data.data; renderAll(); }
+        if (data?.data) { S = data.data; renderAll(); updateI18n(); }
       } catch (e) {
         console.error('loadRemote error:', e);
       }
@@ -2862,9 +3125,9 @@
       cont.id = 'auth-cont';
       cont.style.display = 'flex';
       if (user) {
-        cont.innerHTML = `<div class="user-pill"><span class="ms" style="font-size:14px;color:var(--accent3)">person</span><span>${user.email.split('@')[0]}</span><button class="user-logout" onclick="signOutUser()"><span class="ms" style="font-size:14px;">logout</span></button></div>`;
+        cont.innerHTML = `<div class="user-pill"><span class="ms" style="font-size:14px;color:var(--accent3)">person</span><span>${user.email.split('@')[0]}</span><button class="user-logout" onclick="signOutUser()" title="${TRANSLATIONS[curLang].logout_btn}"><span class="ms" style="font-size:14px;">logout</span></button></div>`;
       } else {
-        cont.innerHTML = `<button class="auth-btn" onclick="openAuth()"><span class="ms" style="font-size:16px;">login</span>Login</button>`;
+        cont.innerHTML = `<button class="auth-btn" onclick="openAuth()"><span class="ms" style="font-size:16px;">login</span>${TRANSLATIONS[curLang].login_btn}</button>`;
       }
       document.querySelector('.tb-sp').after(cont);
       if (document.getElementById('view-pr').classList.contains('on')) renderProfile();
@@ -2876,7 +3139,7 @@
       const email = document.getElementById('authEmail').value;
       const password = document.getElementById('authPass').value;
       const btn = document.getElementById('authSubmit');
-      if (!email || !password) return snack('info', 'กรุณากรอกข้อมูลให้ครบ', 'var(--yellow)');
+      if (!email || !password) return snack('info', TRANSLATIONS[curLang].auth_required, 'var(--yellow)');
 
       btn.disabled = true; btn.textContent = 'Processing...';
 
@@ -2886,20 +3149,20 @@
         if (error.message.includes('Invalid login credentials')) {
           const { data: sData, error: sError } = await sb.auth.signUp({ email, password });
           if (sError) {
-            alert('เกิดข้อผิดพลาดในการสมัครสมาชิก:\n' + sError.message);
+            alert(TRANSLATIONS[curLang].signup_error + '\n' + sError.message);
           } else {
-            alert('สมัครสมาชิกสำเร็จ! 📧\n\nระบบได้ส่งลิงก์ยืนยันไปที่อีเมลของคุณแล้ว กรุณาตรวจสอบกล่องจดหมาย (หรือ Junk mail) เพื่อเปิดใช้งานบัญชีของคุณครับ');
+            alert(TRANSLATIONS[curLang].signup_success);
           }
         } else {
           alert('Error: ' + error.message);
         }
       } else {
-        user = data.user; closeAuth(); updateAuthUI(); loadRemote(); snack('person', 'เข้าสู่ระบบสำเร็จ! 🚀', 'var(--accent)');
+        user = data.user; closeAuth(); updateAuthUI(); loadRemote(); snack('person', TRANSLATIONS[curLang].login_success, 'var(--accent)');
       }
       btn.disabled = false; btn.textContent = 'Continue';
     }
 
-    async function signOutUser() { await sb.auth.signOut(); user = null; updateAuthUI(); localStorage.removeItem(SK); location.reload(); }
+    async function signOutUser() { const l = curLang; await sb.auth.signOut(); user = null; updateAuthUI(); localStorage.removeItem(SK); localStorage.setItem('saas_lang', l); location.reload(); }
 
     async function signInWithGoogle() {
       const redirectTo = window.location.hostname === 'localhost'
@@ -2923,26 +3186,32 @@
     }
     function chkExp() {
       let chg = false;
-      S.weeks.forEach((w, i) => { if (w.st === 'current') { const d = dl(i); if (d && Date.now() > d) { w.st = 'expired'; addN('te', `⚡ Week ${i + 1} หมดเวลา — สัปดาห์ถัดไปปลดล็อคแล้ว`); unlockNxt(i); chg = true; } } });
+      S.weeks.forEach((w, i) => { if (w.st === 'current') { const d = dl(i); if (d && Date.now() > d) { w.st = 'expired'; addN('te', TRANSLATIONS[curLang].week_expired.replace('%n%', i + 1)); unlockNxt(i); chg = true; } } });
       if (chg) { sv(); renderAll(); }
     }
-    function unlockNxt(i) { if (i + 1 < S.weeks.length) { const n = S.weeks[i + 1]; if (n.st === 'locked') { n.st = 'current'; n.startedAt = Date.now(); addN('tn', `🔓 Week ${i + 2}: "${WD[i + 1].t}" ปลดล็อคแล้ว!`); } } }
+    function unlockNxt(i) { if (i + 1 < S.weeks.length) { const n = S.weeks[i + 1]; if (n.st === 'locked') { n.st = 'current'; n.startedAt = Date.now(); addN('tn', TRANSLATIONS[curLang].week_unlocked.replace('%n%', i + 2).replace('%t%', WD[i + 1].t)); } } }
     function addN(tp, msg) { notifs.unshift({ tp, msg, time: Date.now() }); svn(); renderN(); document.getElementById('bdot').classList.add('on'); }
     function renderN() {
       const l = document.getElementById('nplist'); const u = notifs.filter(n => !n.read).length; document.getElementById('bdot').classList.toggle('on', u > 0);
-      if (!notifs.length) { l.innerHTML = '<div class="np-empty">ยังไม่มีการแจ้งเตือน</div>'; return; }
+      if (!notifs.length) { l.innerHTML = `<div class="np-empty">${TRANSLATIONS[curLang].empty_notif}</div>`; return; }
       l.innerHTML = notifs.map(n => `<div class="np-item"><div class="np-dot ${n.tp}"></div><div class="np-msg">${_s(n.msg)}</div><div class="np-time">${tAgo(n.time)}</div></div>`).join('');
     }
     function clearN() { notifs = []; svn(); renderN(); }
     function toggleNp() { const p = document.getElementById('np'); const on = p.classList.toggle('on'); if (on) { notifs.forEach(n => n.read = true); svn(); renderN(); } }
-    function tAgo(ts) { const d = (Date.now() - ts) / 1000; if (d < 60) return 'เมื่อกี้'; if (d < 3600) return Math.floor(d / 60) + 'น.'; if (d < 86400) return Math.floor(d / 3600) + 'ชม.'; return Math.floor(d / 86400) + 'วัน ที่แล้ว'; }
+    function tAgo(ts) {
+      const d = (Date.now() - ts) / 1000;
+      if (d < 60) return TRANSLATIONS[curLang].just_now;
+      if (d < 3600) return Math.floor(d / 60) + TRANSLATIONS[curLang].ago_m;
+      if (d < 86400) return Math.floor(d / 3600) + TRANSLATIONS[curLang].ago_h;
+      return Math.floor(d / 86400) + TRANSLATIONS[curLang].ago_d;
+    }
     function renderAll() { renderTop(); renderBanner(); renderGrid(); renderRing(); renderN(); renderGallery(); }
 
     function renderGallery() {
       const g = document.getElementById('g-grid');
       const doneWeeks = S.weeks.map((w, i) => ({ ...w, idx: i })).filter(w => w.st === 'done' && w.videoUrl);
       if (!doneWeeks.length) {
-        g.innerHTML = `<div class="g-empty" style="grid-column:1/-1"><span class="ms">auto_awesome_motion</span><p>ยังไม่มีผลงานใน Gallery<br>ทำ Challenge ให้เสร็จและแนบลิงก์เพื่อแสดงผลที่นี่!</p></div>`;
+        g.innerHTML = `<div class="g-empty" style="grid-column:1/-1"><span class="ms">auto_awesome_motion</span><p>${TRANSLATIONS[curLang].empty_gallery}</p></div>`;
         return;
       }
       g.innerHTML = doneWeeks.map(w => {
@@ -2956,7 +3225,7 @@
       <div class="g-info">
         <div class="g-top"><span class="g-week">WEEK ${p2(w.idx + 1)}</span></div>
         <div class="g-title">${_s(data.t)}</div>
-        <div class="g-foot"><span class="ms" style="font-size:12px;">event</span> เสร็จเมื่อ ${new Date(w.completedAt).toLocaleDateString('th-TH')}</div>
+        <div class="g-foot"><span class="ms" style="font-size:12px;">event</span> ${TRANSLATIONS[curLang].finished_on} ${new Date(w.completedAt).toLocaleDateString(curLang === 'th' ? 'th-TH' : 'en-US')}</div>
       </div>
     </div>`;
       }).join('');
@@ -2976,20 +3245,20 @@
       let streak = 0; for (let i = 0; i < S.weeks.length; i++) { if (S.weeks[i].st === 'done') streak++; else break; }
       const secs = S.weeks.reduce((a, w) => a + w.days.reduce((b, d) => b + (d.secs || 0), 0), 0);
 
-      document.getElementById('pr-email').textContent = user ? user.email : 'เข้าสู่ระบบเพื่อดูข้อมูลส่วนตัวของคุณ';
+      document.getElementById('pr-email').textContent = user ? user.email : TRANSLATIONS[curLang].login_to_view;
       document.getElementById('stat-done').textContent = done;
       document.getElementById('stat-streak').textContent = streak;
       document.getElementById('stat-hours').textContent = Math.floor(secs / 3600) + 'h';
 
       const achs = [
-        { id: 's1', t: 'Starter', d: 'ทำเสร็จ 1 สัปดาห์แรก', c: done >= 1, i: 'rocket_launch' },
-        { id: 's5', t: 'Dedicated', d: 'ทำเสร็จสะสมครบ 5 สัปดาห์', c: done >= 5, i: 'military_tech' },
-        { id: 's10', t: 'Pro', d: 'ทำเสร็จสะสมครบ 10 สัปดาห์', c: done >= 10, i: 'workspace_premium' },
-        { id: 's25', t: 'Elite', d: 'ทำเสร็จสะสมครบ 25 สัปดาห์', c: done >= 25, i: 'diamond' },
-        { id: 's50', t: 'Master', d: 'พิชิตครบทั้ง 50 สัปดาห์', c: done >= 50, i: 'trophy' },
-        { id: 'st3', t: 'Fire Starter', d: 'ต่อเนื่อง 3 สัปดาห์', c: streak >= 3, i: 'local_fire_department' },
-        { id: 'st10', t: 'Inferno', d: 'ต่อเนื่อง 10 สัปดาห์', c: streak >= 10, i: 'whatshot' },
-        { id: 'gal1', t: 'Showcaser', d: 'บันทึกผลงานลง Gallery ครั้งแรก', c: S.weeks.some(w => w.videoUrl), i: 'photo_library' }
+        { id: 's1', t: curLang === 'th' ? 'ผู้เริ่มต้น' : 'Starter', d: curLang === 'th' ? 'ทำเสร็จ 1 สัปดาห์แรก' : 'Complete your first week', c: done >= 1, i: 'rocket_launch' },
+        { id: 's5', t: curLang === 'th' ? 'ผู้มุ่งมั่น' : 'Dedicated', d: curLang === 'th' ? 'ทำเสร็จสะสมครบ 5 สัปดาห์' : 'Complete 5 weeks total', c: done >= 5, i: 'military_tech' },
+        { id: 's10', t: curLang === 'th' ? 'มือโปร' : 'Pro', d: curLang === 'th' ? 'ทำเสร็จสะสมครบ 10 สัปดาห์' : 'Complete 10 weeks total', c: done >= 10, i: 'workspace_premium' },
+        { id: 's25', t: curLang === 'th' ? 'ระดับอีลิท' : 'Elite', d: curLang === 'th' ? 'ทำเสร็จสะสมครบ 25 สัปดาห์' : 'Complete 25 weeks total', c: done >= 25, i: 'diamond' },
+        { id: 's50', t: curLang === 'th' ? 'ปรมาจารย์' : 'Master', d: curLang === 'th' ? 'พิชิตครบทั้ง 50 สัปดาห์' : 'Conquer all 50 weeks', c: done >= 50, i: 'trophy' },
+        { id: 'st3', t: curLang === 'th' ? 'เริ่มร้อนแรง' : 'Fire Starter', d: curLang === 'th' ? 'ต่อเนื่อง 3 สัปดาห์' : 'Maintain a 3-week streak', c: streak >= 3, i: 'local_fire_department' },
+        { id: 'st10', t: curLang === 'th' ? 'ไฟลุก' : 'Inferno', d: curLang === 'th' ? 'ต่อเนื่อง 10 สัปดาห์' : 'Maintain a 10-week streak', c: streak >= 10, i: 'whatshot' },
+        { id: 'gal1', t: curLang === 'th' ? 'นักจัดแสดง' : 'Showcaser', d: curLang === 'th' ? 'บันทึกผลงานลง Gallery ครั้งแรก' : 'Add your first video to Gallery', c: S.weeks.some(w => w.videoUrl), i: 'photo_library' }
       ];
 
       document.getElementById('ach-grid').innerHTML = achs.map(a => `
@@ -3034,8 +3303,9 @@
         const data = WD[i], done = w.days.filter(d => d.st === 'done').length, pct = done / 5 * 100;
         const deadline = dl(i), tl = deadline ? tL(deadline) : null;
         const cls = { current: 'cc', done: 'cd', locked: 'cl', expired: 'ce' }[w.st];
-        const bdg = { current: '<span class="wc-bdg bc">🔥 ACTIVE</span>', done: '<span class="wc-bdg bd">✓ DONE</span>', locked: '<span class="wc-bdg bl">🔒 LOCKED</span>', expired: '<span class="wc-bdg be">⚡ EXPIRED</span>' }[w.st];
-        const foot = w.st === 'current' && tl && !tl.exp ? `<span class="ms">timer</span>${tl.d}d ${p2(tl.h)}h เหลือ` : w.st === 'done' ? `<span class="ms">check_circle</span>${done}/5 วัน` : w.st === 'expired' ? `<span class="ms">schedule</span>หมดเวลา` : `<span class="ms">lock</span>รอ unlock`;
+        const statusText = { current: 'status_active', done: 'status_done', locked: 'status_locked', expired: 'status_expired' }[w.st];
+        const bdg = `<span class="wc-bdg ${cls.replace('c','b')}">${TRANSLATIONS[curLang][statusText]}</span>`;
+        const foot = w.st === 'current' && tl && !tl.exp ? `<span class="ms">timer</span>${tl.d}d ${p2(tl.h)}h ${TRANSLATIONS[curLang].remaining_unit}` : w.st === 'done' ? `<span class="ms">check_circle</span>${done}/5 ${TRANSLATIONS[curLang].day_done_unit}` : w.st === 'expired' ? `<span class="ms">schedule</span>${TRANSLATIONS[curLang].expired_label}` : `<span class="ms">lock</span>${TRANSLATIONS[curLang].wait_unlock}`;
         return `<div class="wcard ${cls}" onclick="cClick(${i})" style="animation-delay:${Math.min(i * .025, .35)}s">
       ${w.st === 'locked' ? '<span class="ms wc-lic">lock</span>' : w.st === 'expired' ? '<span class="ms wc-lic">warning</span>' : ''}
       <div class="wc-top"><span class="wc-num">W/${p2(i + 1)}</span>${bdg}</div>
@@ -3046,7 +3316,14 @@
       <div class="wc-foot">${foot}</div></div>`;
       }).join('');
     }
-    function cClick(i) { if (S.weeks[i].st === 'locked') { snack('lock', '🔒 ล็อคอยู่ — ทำสัปดาห์ก่อนให้เสร็จก่อน', '#52526e'); return; } openWeek(i); }
+    function cClick(i) {
+      if (S.weeks[i].st === 'locked') {
+        const msg = curLang === 'th' ? '🔒 ล็อคอยู่ — ทำสัปดาห์ก่อนให้เสร็จก่อน' : '🔒 Locked — Complete previous weeks first';
+        snack('lock', msg, '#52526e');
+        return;
+      }
+      openWeek(i);
+    }
     function openWeek(i) {
       openIdx = i; const w = S.weeks[i], data = WD[i];
       document.getElementById('pnchip').textContent = `WEEK ${p2(i + 1)}`;
@@ -3082,10 +3359,10 @@
       </div>
       <div class="pnd-bw"><div class="pnd-b"><p>${dDesc(i, di)}</p><ul>${dTasks(i, di).map(t => `<li>${t}</li>`).join('')}</ul></div>
       ${locked ? '' : ` <div class="pnd-act">
-        <button class="bts" id="bts-${i}-${di}" onclick="startD(${i},${di})"><span class="ms" style="font-size:14px">${ds.st === 'active' ? 'pause' : 'play_arrow'}</span>${ds.st === 'active' ? 'กำลังทำ' : 'เริ่มทำ'}</button>
-        <button class="btc" onclick="doneD(${i},${di})"><span class="ms" style="font-size:14px">check_circle</span>เสร็จสิ้น</button>
-        <div class="dtag"><span class="ms fill" style="font-size:14px">task_alt</span>เสร็จสิ้นแล้ว</div>
-        <button class="btr" onclick="resetD(${i},${di})"><span class="ms" style="font-size:14px">restart_alt</span>รีเซ็ต</button>
+        <button class="bts" id="bts-${i}-${di}" onclick="startD(${i},${di})"><span class="ms" style="font-size:14px">${ds.st === 'active' ? 'pause' : 'play_arrow'}</span>${ds.st === 'active' ? (curLang === 'th' ? 'กำลังทำ' : 'In Progress') : (curLang === 'th' ? 'เริ่มทำ' : 'Start Task')}</button>
+        <button class="btc" onclick="doneD(${i},${di})"><span class="ms" style="font-size:14px">check_circle</span>${curLang === 'th' ? 'เสร็จสิ้น' : 'Complete'}</button>
+        <div class="dtag"><span class="ms fill" style="font-size:14px">task_alt</span>${curLang === 'th' ? 'เสร็จสิ้นแล้ว' : 'Task Complete'}</div>
+        <button class="btr" onclick="resetD(${i},${di})"><span class="ms" style="font-size:14px">restart_alt</span>${curLang === 'th' ? 'รีเซ็ต' : 'Reset'}</button>
       </div>`}</div></div>`;
       }).join('');
 
@@ -3093,7 +3370,7 @@
         const revertHtml = `
           <div class="pn-revert-box">
             <button class="btn-revert" onclick="revertWk(${i})">
-              <span class="ms" style="font-size:16px">undo</span>ยกเลิกการเสร็จสิ้นสัปดาห์นี้
+              <span class="ms" style="font-size:16px">undo</span>${curLang === 'th' ? 'ยกเลิกการเสร็จสิ้นสัปดาห์นี้' : 'Revert week completion'}
             </button>
           </div>
         `;
@@ -3107,37 +3384,51 @@
       const ds = S.weeks[wi].days[di]; if (ds.st === 'active' || ds.st === 'done') return;
       ds.st = 'active'; ds.startedAt = Date.now(); sv();
       const el = document.getElementById(`pnd-${wi}-${di}`);
-      if (el) { el.dataset.s = 'active'; el.classList.add('open'); const ic = el.querySelector('.pnd-ic'); if (ic) ic.textContent = 'pause_circle'; const b = document.getElementById(`bts-${wi}-${di}`); if (b) b.innerHTML = '<span class="ms" style="font-size:14px">pause</span>กำลังทำ'; }
+      if (el) { el.dataset.s = 'active'; el.classList.add('open'); const ic = el.querySelector('.pnd-ic'); if (ic) ic.textContent = 'pause_circle'; const b = document.getElementById(`bts-${wi}-${di}`); if (b) b.innerHTML = `<span class="ms" style="font-size:14px">pause</span>${curLang === 'th' ? 'กำลังทำ' : 'In Progress'}`; }
       const k = `${wi}-${di}`; if (tmrs[k]) clearInterval(tmrs[k]);
       tmrs[k] = setInterval(() => { ds.secs++; const v = document.getElementById(`ptmv-${wi}-${di}`); if (v) v.textContent = fmt(ds.secs); }, 1000);
-      renderBanner(); renderGrid(); snack('play_arrow', `Day ${di + 1} — เริ่มต้นแล้ว! 🚀`, '#4285F4');
+      renderBanner(); renderGrid();
+      const msg = curLang === 'th' ? `Day ${di + 1} — เริ่มต้นแล้ว! 🚀` : `Day ${di + 1} — Task Started! 🚀`;
+      snack('play_arrow', msg, '#4285F4');
     }
     function doneD(wi, di) {
       const w = S.weeks[wi], ds = w.days[di];
-      if (ds.st === 'idle') { snack('info', 'กดเริ่มทำก่อนนะ!', '#FBBC04'); return; } if (ds.st === 'done') return;
+      if (ds.st === 'idle') {
+        const msg = curLang === 'th' ? 'กดเริ่มทำก่อนนะ!' : 'Start the task first!';
+        snack('info', msg, '#FBBC04');
+        return;
+      }
+      if (ds.st === 'done') return;
       const k = `${wi}-${di}`; if (tmrs[k]) { clearInterval(tmrs[k]); delete tmrs[k]; }
       ds.st = 'done'; ds.completedAt = Date.now(); sv();
       const el = document.getElementById(`pnd-${wi}-${di}`); if (el) { el.dataset.s = 'done'; const ic = el.querySelector('.pnd-ic'); if (ic) ic.textContent = 'task_alt'; }
       if (w.days.every(d => d.st === 'done')) setTimeout(() => completeWk(wi), 500);
-      renderBanner(); renderGrid(); snack('task_alt', `Day ${di + 1} — เสร็จสิ้น! 🎉`, '#34A853');
+      renderBanner(); renderGrid();
+      const msg = curLang === 'th' ? `Day ${di + 1} — เสร็จสิ้น! 🎉` : `Day ${di + 1} — Task Complete! 🎉`;
+      snack('task_alt', msg, '#34A853');
     }
     function resetD(wi, di) {
       const k = `${wi}-${di}`; if (tmrs[k]) { clearInterval(tmrs[k]); delete tmrs[k]; }
       const ds = S.weeks[wi].days[di]; ds.st = 'idle'; ds.secs = 0; ds.startedAt = null; ds.completedAt = null; sv();
-      const el = document.getElementById(`pnd-${wi}-${di}`); if (el) { el.dataset.s = 'idle'; const ic = el.querySelector('.pnd-ic'); if (ic) ic.textContent = 'radio_button_unchecked'; const b = document.getElementById(`bts-${wi}-${di}`); if (b) b.innerHTML = '<span class="ms" style="font-size:14px">play_arrow</span>เริ่มทำ'; const v = document.getElementById(`ptmv-${wi}-${di}`); if (v) v.textContent = '00:00'; }
-      renderBanner(); renderGrid(); snack('restart_alt', 'รีเซ็ตแล้ว', '#52526e');
+      const el = document.getElementById(`pnd-${wi}-${di}`); if (el) { el.dataset.s = 'idle'; const ic = el.querySelector('.pnd-ic'); if (ic) ic.textContent = 'radio_button_unchecked'; const b = document.getElementById(`bts-${wi}-${di}`); if (b) b.innerHTML = `<span class="ms" style="font-size:14px">play_arrow</span>${curLang === 'th' ? 'เริ่มทำ' : 'Start Task'}`; const v = document.getElementById(`ptmv-${wi}-${di}`); if (v) v.textContent = '00:00'; }
+      renderBanner(); renderGrid(); snack('restart_alt', curLang === 'th' ? 'รีเซ็ตแล้ว' : 'Task Reset', '#52526e');
     }
     function markAll(wi) { S.weeks[wi].days.forEach((d, di) => { if (d.st !== 'done') { const k = `${wi}-${di}`; if (tmrs[k]) { clearInterval(tmrs[k]); delete tmrs[k]; } d.st = 'done'; d.completedAt = Date.now(); } }); completeWk(wi); }
 
     function completeWk(wi) {
       const w = S.weeks[wi]; w.st = 'done'; w.completedAt = Date.now(); sv(); unlockNxt(wi); renderAll();
-      sumNxt = wi + 1 < S.weeks.length ? wi + 1 : null; showSum(wi); addN('td', `✅ Week ${wi + 1} "${WD[wi].t}" เสร็จสมบูรณ์!`);
-      if ('Notification' in window && Notification.permission === 'granted')
-        new Notification(`Week ${wi + 1} เสร็จแล้ว! 🎉`, { body: `"${WD[wi].t}"` });
+      sumNxt = wi + 1 < S.weeks.length ? wi + 1 : null; showSum(wi);
+      const msg = curLang === 'th' ? `✅ Week ${wi + 1} "${WD[wi].t}" เสร็จสมบูรณ์!` : `✅ Week ${wi + 1} "${WD[wi].t}" Complete!`;
+      addN('td', msg);
+      if ('Notification' in window && Notification.permission === 'granted') {
+        const title = curLang === 'th' ? `Week ${wi + 1} เสร็จแล้ว! 🎉` : `Week ${wi + 1} Complete! 🎉`;
+        new Notification(title, { body: `"${WD[wi].t}"` });
+      }
     }
 
     function revertWk(wi) {
-      if (!confirm('คุณแน่ใจหรือไม่ที่จะยกเลิกการเสร็จสิ้นสัปดาห์นี้? สัปดาห์ถัดไปทั้งหมดจะถูกล็อคอีกครั้ง')) return;
+      const confirmMsg = curLang === 'th' ? 'คุณแน่ใจหรือไม่ที่จะยกเลิกการเสร็จสิ้นสัปดาห์นี้? สัปดาห์ถัดไปทั้งหมดจะถูกล็อคอีกครั้ง' : 'Are you sure you want to revert this week? All subsequent weeks will be locked again.';
+      if (!confirm(confirmMsg)) return;
       S.weeks[wi].st = 'current';
       S.weeks[wi].completedAt = null;
       S.weeks[wi].videoUrl = null;
@@ -3149,7 +3440,8 @@
         S.weeks[j].days.forEach(d => { d.st = 'idle'; d.secs = 0; d.startedAt = null; d.completedAt = null; });
       }
       sv(); renderAll(); closePn();
-      snack('undo', 'ยกเลิกการเสร็จสิ้นและล็อคสัปดาห์ถัดไปแล้ว', 'var(--red)');
+      const snackMsg = curLang === 'th' ? 'ยกเลิกการเสร็จสิ้นและล็อคสัปดาห์ถัดไปแล้ว' : 'Week reverted and subsequent weeks locked.';
+      snack('undo', snackMsg, 'var(--red)');
     }
 
     function showSum(wi) {
@@ -3161,8 +3453,9 @@
       document.getElementById('msub').textContent = data.tags.join(' · ');
       document.getElementById('mdays').textContent = '5/5';
       document.getElementById('mtime').textContent = fmt(tot);
-      document.getElementById('mleft').textContent = de + ' วัน';
-      document.getElementById('mdaysrow').innerHTML = ['จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.'].map((d, i) => `<div class="mdd"><span class="ms fill" style="font-size:14px">task_alt</span>${d} ${fmt(w.days[i].secs)}</div>`).join('');
+      document.getElementById('mleft').textContent = de + (curLang === 'th' ? ' วัน' : ' Days');
+      const dayLabs = curLang === 'th' ? ['จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.'] : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+      document.getElementById('mdaysrow').innerHTML = dayLabs.map((d, i) => `<div class="mdd"><span class="ms fill" style="font-size:14px">task_alt</span>${d} ${fmt(w.days[i].secs)}</div>`).join('');
 
       const vInput = document.getElementById('m-video-url');
       vInput.value = w.videoUrl || '';
@@ -3176,21 +3469,34 @@
 
     function saveVideo(wi) {
       const url = document.getElementById('m-video-url').value.trim();
-      if (!url) { snack('info', 'กรุณาวางลิงก์ผลงานก่อนบันทึกนะ', '#FBBC04'); return; }
+      if (!url) {
+        snack('info', curLang === 'th' ? 'กรุณาวางลิงก์ผลงานก่อนบันทึกนะ' : 'Please paste your work link first', '#FBBC04');
+        return;
+      }
       const vid = getVidId(url);
-      if (!vid.id) { snack('warning', 'ลิงก์ไม่ถูกต้อง (รองรับ YouTube/Vimeo)', '#EA4335'); return; }
+      if (!vid.id) {
+        snack('warning', curLang === 'th' ? 'ลิงก์ไม่ถูกต้อง (รองรับ YouTube/Vimeo)' : 'Invalid link (YouTube/Vimeo only)', '#EA4335');
+        return;
+      }
 
       S.weeks[wi].videoUrl = url;
       sv();
-      snack('auto_awesome_motion', 'บันทึกผลงานเรียบร้อย! ✨', '#e8ff47');
+      snack('auto_awesome_motion', curLang === 'th' ? 'บันทึกผลงานเรียบร้อย! ✨' : 'Work saved successfully! ✨', '#e8ff47');
       closeSum();
       setTimeout(() => setView('gl'), 500);
     }
 
     function closeSum() { document.getElementById('mwrap').classList.remove('on'); }
     function setF(f, btn) { curF = f; document.querySelectorAll('.ftab').forEach(t => t.classList.remove('on')); btn.classList.add('on'); renderGrid(); }
-    function dDesc(wi, di) { return ['<strong>วิเคราะห์ Brief & วาง Strategy</strong> — กำหนด Narrative, Target Audience, Key Message', '<strong>ออกแบบ Visual System</strong> — Styleframes, Color Palette, Typography, Components', '<strong>Production Day</strong> — ลงมือทำ Core Animation & Motion Design หลัก', '<strong>Polish & Micro-interactions</strong> — Detail, Timing, Secondary Animations', '<strong>Final Render & Delivery</strong> — Export ทุก Format, Case Study, Portfolio'][di]; }
-    function dTasks(wi, di) { return [['Research Brand Guidelines & Competitor Analysis', 'เขียน Script 25-30 วิ พร้อม Timestamp', 'วาด Rough Storyboard 8+ Keyframes', 'กำหนด Camera Movement & Transition Style', 'สรุป Technical Constraints: Format, FPS, Duration'], ['สร้าง Color System: Primary, Secondary, Accent', 'เลือก Typography Stack: Display + Body + Mono', 'ออกแบบ 3 Styleframes (1920×1080) ใน Figma', 'กำหนด 8px Grid System & Spacing Rules', 'Export Annotated Styleframes พร้อม Spec Sheet'], ['Build Core Scene ใน After Effects', 'Animate Hero Element ด้วย Custom Easing', 'สร้าง Transition System ระหว่าง Scene', 'ตรวจ Timing: Key Message ชัดภายใน 3 วิ', 'Preview Render เพื่อตรวจ Overall Rhythm'], ['เพิ่ม Micro-interactions ทุก Element', 'Refine Easing Curves ใน Graph Editor', 'เพิ่ม Secondary Animation: Particles, Overlays', 'Sound Design: BGM + SFX Sync', 'Color Grade & Final QC'], ['Export: H.264/MP4 1920×1080 @ 60fps', 'Export: ProRes 4444 Master File', 'Export: 1:1 Square Reframe สำหรับ Social', 'เขียน Case Study 3 Bullets: Problem, Decision, Impact', 'Upload ลง Portfolio & Share']][di]; }
+    function dDesc(wi, di) {
+      if (curLang === 'th') return ['<strong>วิเคราะห์ Brief & วาง Strategy</strong> — กำหนด Narrative, Target Audience, Key Message', '<strong>ออกแบบ Visual System</strong> — Styleframes, Color Palette, Typography, Components', '<strong>Production Day</strong> — ลงมือทำ Core Animation & Motion Design หลัก', '<strong>Polish & Micro-interactions</strong> — Detail, Timing, Secondary Animations', '<strong>Final Render & Delivery</strong> — Export ทุก Format, Case Study, Portfolio'][di];
+      return ['<strong>Brief Analysis & Strategy</strong> — Narrative, Target Audience, Key Message', '<strong>Visual System Design</strong> — Styleframes, Color Palette, Typography, Components', '<strong>Production Day</strong> — Core Animation & Motion Design', '<strong>Polish & Micro-interactions</strong> — Timing, Detail, Secondary Animations', '<strong>Final Render & Delivery</strong> — Export, Case Study, Portfolio'][di];
+    }
+    function dTasks(wi, di) {
+      const th = [['Research Brand Guidelines & Competitor Analysis', 'เขียน Script 25-30 วิ พร้อม Timestamp', 'วาด Rough Storyboard 8+ Keyframes', 'กำหนด Camera Movement & Transition Style', 'สรุป Technical Constraints: Format, FPS, Duration'], ['สร้าง Color System: Primary, Secondary, Accent', 'เลือก Typography Stack: Display + Body + Mono', 'ออกแบบ 3 Styleframes (1920×1080) ใน Figma', 'กำหนด 8px Grid System & Spacing Rules', 'Export Annotated Styleframes พร้อม Spec Sheet'], ['Build Core Scene ใน After Effects', 'Animate Hero Element ด้วย Custom Easing', 'สร้าง Transition System ระหว่าง Scene', 'ตรวจ Timing: Key Message ชัดภายใน 3 วิ', 'Preview Render เพื่อตรวจ Overall Rhythm'], ['เพิ่ม Micro-interactions ทุก Element', 'Refine Easing Curves ใน Graph Editor', 'เพิ่ม Secondary Animation: Particles, Overlays', 'Sound Design: BGM + SFX Sync', 'Color Grade & Final QC'], ['Export: H.264/MP4 1920×1080 @ 60fps', 'Export: ProRes 4444 Master File', 'Export: 1:1 Square Reframe สำหรับ Social', 'เขียน Case Study 3 Bullets: Problem, Decision, Impact', 'Upload ลง Portfolio & Share']][di];
+      const en = [['Research Brand Guidelines & Competitor Analysis', 'Write 25-30s Script with Timestamps', 'Sketch Rough Storyboard (8+ Keyframes)', 'Define Camera Movement & Transition Style', 'Summarize Technical Constraints'], ['Build Color System: Primary, Secondary, Accent', 'Select Typography Stack: Display + Body + Mono', 'Design 3 Styleframes (1920x1080)', 'Set 8px Grid System & Spacing Rules', 'Export Styleframes with Spec Sheet'], ['Build Core Scenes in After Effects', 'Animate Hero Elements with Custom Easing', 'Create Transition System between Scenes', 'Time Key Messages (Visible within 3s)', 'Preview Render for Rhythm Check'], ['Add Micro-interactions to all elements', 'Refine Easing Curves in Graph Editor', 'Add Secondary Motion: Particles, Overlays', 'Sound Design: BGM + SFX Sync', 'Color Grading & Final QC'], ['Export: H.264/MP4 1920x1080 @ 60fps', 'Export: ProRes 4444 Master File', 'Export: 1:1 Social Reframe', 'Write Case Study (Problem, Decision, Impact)', 'Upload to Portfolio & Share']][di];
+      return curLang === 'th' ? th : en;
+    }
     function p2(n) { return String(n).padStart(2, '0'); }
     function fmt(s) { return p2(Math.floor(s / 60)) + ':' + p2(s % 60); }
     let snT = null;
@@ -3201,22 +3507,31 @@
       localStorage.setItem('saasNotifAsked', 'true');
       Notification.requestPermission();
     }
-    chkExp(); renderAll(); checkUser();
-    sb.auth.onAuthStateChange((event, session) => {
-      console.log('Auth Event:', event, session);
-      if (event === 'SIGNED_IN') {
-        user = session?.user || null;
-        updateAuthUI();
-        loadRemote();
-        closeAuth();
-        if (window.location.hash) history.replaceState(null, null, ' ');
-        snack('person', 'เข้าสู่ระบบสำเร็จ! 🚀', 'var(--accent)');
-      } else if (event === 'SIGNED_OUT') {
-        user = null;
-        updateAuthUI();
+  </script>
+  <script>
+    // FINAL STARTUP - Running on a fresh execution context to ensure all variables are ready
+    (function() {
+      const savedLang = localStorage.getItem('saas_lang') || 'en';
+      if (typeof setLanguage === 'function') {
+        setLanguage(savedLang); 
+        checkUser();
+        
+        if (typeof sb !== 'undefined' && sb.auth) {
+          sb.auth.onAuthStateChange((event, session) => {
+            if (event === 'SIGNED_IN') {
+              user = session?.user || null; updateAuthUI(); loadRemote(); closeAuth();
+              if (window.location.hash) history.replaceState(null, null, ' ');
+              snack('person', TRANSLATIONS[curLang].login_success, 'var(--accent)');
+            } else if (event === 'SIGNED_OUT') {
+              user = null; updateAuthUI();
+            }
+          });
+        }
+        setInterval(chkExp, 30000);
+        panIv = setInterval(renderGrid, 60000);
+        banIv = setInterval(renderBanner, 1000);
       }
-    });
-    setInterval(chkExp, 30000);
+    })();
 
   </script>
 </body>
