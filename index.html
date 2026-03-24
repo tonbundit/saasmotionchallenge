@@ -2896,10 +2896,13 @@
     async function signOutUser() { await sb.auth.signOut(); user = null; updateAuthUI(); localStorage.removeItem(SK); location.reload(); }
 
     async function signInWithGoogle() {
+      const redirectTo = window.location.hostname === 'localhost'
+        ? window.location.origin
+        : window.location.origin + window.location.pathname;
       const { data, error } = await sb.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: window.location.origin + window.location.pathname
+          redirectTo: redirectTo
         }
       });
       if (error) alert('Error: ' + error.message);
